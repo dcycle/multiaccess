@@ -26,7 +26,7 @@
  */
 $config["multiaccess.unversioned"]["destinations"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["remote_url"] = "http://webserver_destination";
 $config["multiaccess.unversioned"]["destinations"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["label"] = "Test Destination Site";
-$config["multiaccess.unversioned"]["destinations"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["accessible_to_roles"] = ["authenticated"];
+$config["multiaccess.unversioned"]["destinations"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["accessible_to_roles"] = ["source_role"];
 $config["multiaccess.unversioned"]["destinations"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["remote_public_key"] = "-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAoHkMQWopUoBLOSsiVtaW
 JbLz8Yp/ZaBhCNdPAzsNHoqK8MRCV8mW6gRWuheZdVXEQK6KMdjx0I9tXnVVColX
@@ -113,7 +113,7 @@ rTjvxIqhixGp24c1NO5C9LhIcFab+Q==
  * * Do not put this in version control.
  * * Do not use the Drupal config management system for this info.
  */
-$config["multiaccess.unversioned"]["sources"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["public_url"] = "http://webserver_destination";
+$config["multiaccess.unversioned"]["sources"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["public_url"] = "http://steward-hub.local:60087";
 $config["multiaccess.unversioned"]["sources"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["remote_public_key"] = "-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAoNuhte2MhPYW083UUB+d
 xK36ENhwPVt8asaF0NtbzQk9now1TYujmrYxRQWbe0oikz1tSjwpSTRORBBOvUte
@@ -182,7 +182,7 @@ RltaLzLRHkLYu7CUSUAiAN553Ekg07oN1I4PTjVqnSGNQRB0a6ieZcMdDJc4GZoi
 I61/kEkKL0Znje58dp/MRNLbmMNaTQ==
 -----END PRIVATE KEY-----
 ";
-$config["multiaccess.unversioned"]["sources"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["role_mapping"]["authenticated"][] = "authenticated";
+$config["multiaccess.unversioned"]["sources"]["2d107930-f869-4443-9fbc-6f5b4fd0a1a8"]["role_mapping"]["source_role"][] = "destination_role";
 /**
  * MultiAccess end sources unversioned config.
  */

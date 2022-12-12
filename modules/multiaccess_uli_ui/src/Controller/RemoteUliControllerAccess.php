@@ -23,9 +23,14 @@ class RemoteUliControllerAccess {
    *   The access result.
    */
   public function access(AccountInterface $account) {
-    $roles = $account->getRoles();
+    try {
+      $roles = $account->getRoles();
 
-    return AccessResult::allowedIf(count($this->integrationDestinationFactory()->destinationsAvailableToRoles($roles)) > 0);
+      return AccessResult::allowedIf(count($this->integrationDestinationFactory()->destinationsAvailableToRoles($roles)) > 0);
+    }
+    catch (\Throwable $t) {
+      return AccessResult::forbidden();
+    }
   }
 
 }
