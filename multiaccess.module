@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * @file
+ * Runtime hooks.
+ */
+
+use Drupal\multiaccess\MultiAccessInterface;
+
+/**
+ * Quick access to the multiaccess service, useful for debugging.
+ *
+ * @return \Drupal\multiaccess\MultiAccessInterface
+ *   The MultiAccess service.
+ */
+// @codingStandardsIgnoreStart
+// PHP Lint wants this to be prefixed with the module name, but it _is_
+// the same as the module name, so I consider this ok.
+function multiaccess() : MultiAccessInterface {
+// @codingStandardsIgnoreEnd
+  return \Drupal::service('multiaccess');
+}
+
+/**
+ * Get information about how to link sites. See README.md.
+ *
+ * @param string $label
+ *   The human-readable label for the destination site.
+ * @param string $public
+ *   The publicly accessible full URL of the site you want to access, for
+ *   example http://site-i-want-to-access.example.com.
+ * @param string $internal
+ *   The internally accessible full URL of the site you want to access, which
+ *   can be different from the public URL if you are using Docker or a
+ *   reverse proxy.
+ * @param array $role_mapping_array
+ *   Keys are roles on the site where you have an account, and values are
+ *   each arrays of roles on the site you want to access.
+ */
+function multiaccess_new_integration(string $label, string $public, string $internal, array $role_mapping_array) {
+  print_r(multiaccess()
+    ->newIntegration($label, $public, $internal, $role_mapping_array)
+    ->format());
+}
+
+/**
+ * Print a one-time login link for the first destination.
+ *
+ * Used by .//Users/albert/Documents/dev/docker/modules/multiaccess/scripts/test-running-environment.sh.
+ */
+function multiaccess_get_remote_uli_for_first_destination() {
+  print_r(multiaccess()
+    ->integrationDestinationFactory()
+    ->firstDestination()
+    ->uli(multiaccess()->getUserOneEmail()));
+}
+
+/**
+ * Run a self-test on our insatllation. Meant to be run on the source site.
+ *
+ * See ./README.md.
+ */
+function multiaccess_selftest() {
+  if (!multiaccess()->selftest(function (string $status, string $string) {
+    print('[' . $status . '] ' . $string . PHP_EOL);
+  })) {
+    exit(1);
+  };
+}
+
+/**
+ * List all integrations.
+ */
+function multiaccess_list() {
+  $destinations = multiaccess()
+    ->integrationDestinationFactory()
+    ->allFromUnversionedSettingsFile();
+  // Because of https://www.drupal.org/project/drupal/issues/2273889 I do
+  // not trust format_plural().
+  print(t('Site has @num destination(s):', [
+    '@num' => count($destinations),
+  ]) . PHP_EOL);
+  foreach ($destinations as $destination) {
+    $uuid = $destination->getUuid();
+    $label = $destination->getLabel();
+    $url = $destination->getUrl();
+
+    print(' * ' . $uuid . ' (' . $label . '): ' . $url . PHP_EOL);
+  }
+  $sources = multiaccess()
+    ->integrationSourceFactory()
+    ->allFromUnversionedSettingsFile();
+  // Because of https://www.drupal.org/project/drupal/issues/2273889 I do
+  // not trust format_plural().
+  print(t('Site has @num source(s):', [
+    '@num' => count($sources),
+  ]) . PHP_EOL);
+  foreach ($sources as $source) {
+    $uuid = $source->getUuid();
+
+    print(' * ' . $uuid . PHP_EOL);
+  }
+}

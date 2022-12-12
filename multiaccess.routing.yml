@@ -1,0 +1,14 @@
+---
+multiaccess.login_link:
+  path: '/api/multiaccess/v1/login-link'
+  defaults:
+    _controller: "\\Drupal\\multiaccess\\Controller\\MultiAccessLoginLink::\
+    getResult"
+  requirements:
+    _access: 'TRUE'
+multiaccess.ping:
+  path: '/api/multiaccess/v1/ping'
+  defaults:
+    _controller: '\Drupal\multiaccess\Controller\MultiAccessPing::getResult'
+  requirements:
+    _access: 'TRUE'

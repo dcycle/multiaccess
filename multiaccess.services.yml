@@ -1,0 +1,14 @@
+---
+services:
+  multiaccess:
+    class: Drupal\multiaccess\MultiAccess
+  multiaccess.integration_source_factory:
+    class: Drupal\multiaccess\Integration\IntegrationSourceFactory
+  multiaccess.response_factory:
+    class: Drupal\multiaccess\Response\ResponseFactory
+  multiaccess.integration_destination_factory:
+    class: Drupal\multiaccess\Integration\IntegrationDestinationFactory
+  multiaccess.role_mapping_factory:
+    class: Drupal\multiaccess\RoleMapping\RoleMappingFactory
+  multiaccess.key_pair_factory:
+    class: Drupal\multiaccess\KeyPair\KeyPairFactory

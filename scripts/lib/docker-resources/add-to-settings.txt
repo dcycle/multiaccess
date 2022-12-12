@@ -1,0 +1,4 @@
+// Useful for testing.
+if (file_exists('/do-not-commit/test-integration/unversioned-settings.php')) {
+  include('/do-not-commit/test-integration/unversioned-settings.php');
+}
