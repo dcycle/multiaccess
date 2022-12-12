@@ -4,7 +4,7 @@
 #
 set -e
 
-docker pull dcycle/md2html:1
+docker pull dcycle/md2html:2
 docker run --rm -v "$(pwd):/app/code" \
   dcycle/md2html:1 -t html5 README.md -o README.html
 
@@ -18,3 +18,6 @@ docker run --rm -v "$(pwd):/app/code" \
 # systems, perl seems a good alternative, see
 # https://stackoverflow.com/a/4247319/1207752
 perl -i -pe's/\)-&gt;/)->/g' README.html
+perl -i -pe's/&quot;/"/g' README.html
+perl -i -pe"s/&#39;/'/g" README.html
+perl -i -pe"s/ =&gt; / => /g" README.html

@@ -75,7 +75,7 @@ Now make note of:
 
 Log on to the backend of the Site On Which I Have An Account and type:
 
-    drush ev "multiaccess_new_integration(label: "My Destination Site", public: 'http://site-i-want-to-access.example.com', internal: 'http://site-i-want-to-access.example.com', role_mapping_array: ['authenticated' => ['authenticated']])"
+    drush ev "multiaccess_new_integration(label: 'My Destination Site', public: 'http://site-i-want-to-access.example.com', internal: 'http://site-i-want-to-access.example.com', role_mapping_array: ['authenticated' => ['authenticated']])"
 
 This will print out instructions of what to place in your local **unversioned** settings files for each site (the site on which you have an account, and the site you want to access).
 
