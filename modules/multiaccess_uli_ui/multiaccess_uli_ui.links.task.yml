@@ -1,0 +1,6 @@
+---
+multiaccess_uli_ui.user.content_task:
+  title: 'Remote sites'
+  route_name: multiaccess_uli_ui.user.remote
+  base_route: entity.user.canonical
+  weight: 1

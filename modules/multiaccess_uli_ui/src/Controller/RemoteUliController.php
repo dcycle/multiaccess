@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\multiaccess\RemoteUliController;
+namespace Drupal\multiaccess_uli_ui\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
@@ -12,6 +12,18 @@ use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 class RemoteUliController {
 
   use DependencyInjectionTrait;
+
+  /**
+   * Returns a page to access remote unique login links.
+   *
+   * @return array
+   *   A renderable array.
+   */
+  public function get() {
+    return [
+      '#markup' => 'Hello, world',
+    ];
+  }
 
   /**
    * Checks access for a specific request.
