@@ -1,0 +1,16 @@
+---
+multiaccess_uli_ui.user.remote:
+  path: '/user/{user}/multiaccess'
+  defaults:
+    _controller: "\\Drupal\\multiaccess_uli_ui\\Controller\\RemoteUliController\
+    ::get"
+    _title: 'Remote Sites'
+  requirements:
+    _custom_access: "\\Drupal\\multiaccess_uli_ui\\Controller\\\
+    RemoteUliController::access"
+    _entity_access: 'user.view'
+    user: \d+
+  options:
+    parameters:
+      user:
+        type: entity:user

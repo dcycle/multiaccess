@@ -43,6 +43,7 @@ class IntegrationDestinationFactory extends IntegrationFactory implements Integr
       localPrivateKey: $line['local_private_key'] ?? '',
       remotePublicKey: $line['remote_public_key'] ?? '',
       label: $line['label'] ?? '',
+      accessibleToRoles: $line['accessible_to_roles'] ?? [],
     );
   }
 

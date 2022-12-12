@@ -64,4 +64,21 @@ interface IntegrationDestinationInterface extends IntegrationHalfInterface, Form
    */
   public function sendMessage(string $endpoint, array $postParams) : array;
 
+  /**
+   * Check whether this destination is available to one of these roles.
+   *
+   * If a destination is available to no roles, then it can still be accessed
+   * programmatically, just not by specific users. This method is a helper
+   * to modules such as multiaccess_uli_ui, which control access to
+   * specific users. If you only use multiaccess programmatically, the concept
+   * of role access is moot.
+   *
+   * @param array $roles
+   *   Array of roles.
+   *
+   * @return bool
+   *   Whether one of these roles can access this destination.
+   */
+  public function availableToRolesAmong(array $roles) : bool;
+
 }

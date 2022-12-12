@@ -15,16 +15,16 @@ If you are looking for APIs and webhooks to ensure communication between website
 So why this module?
 -----
 
-This module is meant to have no dependencies, works with multisite configurations, and meant to be installable in a few minutes with some coding skill. Its approach is to have one main (source) site which can access information on destination sites via server-to-server encrypted messages without building a full-fledged API.
+This module is meant to have no dependencies, works with multisite configurations, and meant to be installable in a few minutes with some coding skill by adding some lines to an unversioned settings.php file. Its approach is to have one main (source) site which can access information on destination sites via server-to-server encrypted messages without building a full-fledged API.
 
 Design approach
 -----
 
-This module does not provide an administrative graphical user interface, does not use Drupal Configuration Manager, and does not store anything in the database. Administrators interact with it using Drush.
+The base module does not provide an administrative graphical user interface, does not use Drupal Configuration Manager, and does not store anything in the database. Administrators interact with it using Drush.
 
 The only way to configure this module is to have access to an unversioned local settings file and to add lines to it. It is crucial to never store settings related to this module in version control, as that could be a security hole.
 
-This module can then be interacted with programmatically.
+The base module can then be interacted with programmatically. The included multiaccess_uli_ui module provides a tab on the account page which allows users to log in to remote sites.
 
 Definitions
 -----
@@ -37,7 +37,7 @@ In the context of this module,
 The source site has complete control of the destination site
 -----
 
-The source site can have get a one-time login link to the root user, in effect allowing the source site to control the destination site. The destination site cannot control the source site.
+The source site can get a one-time login link to the root user, in effect allowing the source site to control the destination site. The destination site cannot control the source site.
 
 Typical workflow
 -----
@@ -45,7 +45,8 @@ Typical workflow
 * User with email some_user@example.com exists on the source site.
 * User some_user@example.com has role role_a
 * role_a on source is mapped to role_some_role the destination
-* While on the source site, when this is set up correctly, a unique login link on the destination can be obtained.
+* While on the source site, when this is set up correctly, developers can programmatically obtain a unique login link on the destination.
+* With the multiaccess_uli_ui module enabled, users see a new tab called "Remote sites" where they can access unique login links to remote sites.
 * If a user with some_user@example.com does not exist on Destination, it is created
 * User some_user@example.com on destinations is given role role_some_role as per the mapping.
 

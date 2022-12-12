@@ -46,6 +46,7 @@ class MultiAccess implements MultiAccessInterface {
       remotePublicKey: $destinationKeyPair->publicKey(),
       localPrivateKey: $sourceKeyPair->privateKey(),
       label: $label,
+      accessibleToRoles: array_keys($role_mapping_array),
     );
 
     return new Integration(
