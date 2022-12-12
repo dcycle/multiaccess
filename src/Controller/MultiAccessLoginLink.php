@@ -20,7 +20,14 @@ class MultiAccessLoginLink extends MultiAccessControllerBase {
       ->get($email, $roles, $this->integrationSource($request));
 
     if ($response->valid()) {
-      $return['link'] = $this->encrypt($request, $response->loginLink());
+      $integrationSource = $this->integrationSource($request);
+
+      $loginLinkWithWrongDomain = $response->loginLink();
+
+      $loginLink = $integrationSource
+        ->fixLoginLinkDomain($loginLinkWithWrongDomain);
+
+      $return['link'] = $this->encrypt($request, $loginLink);
     }
     else {
       $return['error'] = $response->errors();

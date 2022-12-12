@@ -43,7 +43,25 @@ class IntegrationDestinationFactory extends IntegrationFactory implements Integr
       localPrivateKey: $line['local_private_key'] ?? '',
       remotePublicKey: $line['remote_public_key'] ?? '',
       label: $line['label'] ?? '',
+      accessibleToRoles: $line['accessible_to_roles'] ?? [],
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function destinationsAvailableToRoles(array $roles) {
+    $return = [];
+
+    $destinations = $this->allFromUnversionedSettingsFile();
+
+    foreach ($destinations as $destination) {
+      if ($destination->availableToRolesAmong($roles)) {
+        $return[] = $destination;
+      }
+    }
+
+    return $return;
   }
 
   /**

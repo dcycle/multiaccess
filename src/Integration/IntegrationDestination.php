@@ -17,6 +17,19 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
   protected $url;
 
   /**
+   * The roles to which this destination is accessible.
+   *
+   * If a destination is available to no roles, then it can still be accessed
+   * programmatically, just not by specific users. This method is a helper
+   * to modules such as multiaccess_uli_ui, which control access to
+   * specific users. If you only use multiaccess programmatically, the
+   * concept of role access is moot.
+   *
+   * @var array
+   */
+  protected $accessibleToRoles;
+
+  /**
    * The destination human-readable label.
    *
    * @var string
@@ -36,8 +49,14 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
    *   The local private key.
    * @param string $label
    *   The human-readable label of this destination.
+   * @param array $accessibleToRoles
+   *   If a destination is available to no roles, then it can still be accessed
+   *   programmatically, just not by specific users. This method is a helper
+   *   to modules such as multiaccess_uli_ui, which control access to
+   *   specific users. If you only use multiaccess programmatically, the
+   *   concept of role access is moot.
    */
-  public function __construct(string $uuid, string $url, string $remotePublicKey, string $localPrivateKey, string $label) {
+  public function __construct(string $uuid, string $url, string $remotePublicKey, string $localPrivateKey, string $label, array $accessibleToRoles) {
     if (!$url) {
       throw new \Exception('Url cannot be empty.');
     }
@@ -46,6 +65,7 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
       throw new \Exception('Label cannot be empty.');
     }
 
+    $this->accessibleToRoles = $accessibleToRoles;
     $this->url = $url;
     $this->label = $label;
     parent::__construct(
@@ -100,6 +120,19 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
   /**
    * {@inheritdoc}
    */
+  public function availableToRolesAmong(array $roles) : bool {
+    foreach ($roles as $role) {
+      if (in_array($role, $this->accessibleToRoles)) {
+        return TRUE;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function uli(string $email) : string {
     $existing_user = $this->app()->getExistingUser($email);
 
@@ -122,7 +155,25 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
     return array_merge([
       '["remote_url"] = "' . $this->getUrl() . '";',
       '["label"] = "' . $this->label . '";',
+      '["accessible_to_roles"] = ' . $this->arrayToSettingsLine($this->accessibleToRoles) . ';',
     ], parent::settingsFileContents());
+  }
+
+  /**
+   * Converts an array to a settings line.
+   *
+   * @param array $data
+   *   An array such as [a, b].
+   *
+   * @return string
+   *   The array as a string such as "['a', 'b']";
+   */
+  public function arrayToSettingsLine(array $data) : string {
+    if (!count($data)) {
+      return '[]';
+    }
+
+    return '["' . implode('", "', $data) . '"]';
   }
 
   /**

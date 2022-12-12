@@ -24,6 +24,20 @@ class IntegrationSource extends IntegrationHalf implements IntegrationSourceInte
   protected $publicUrl;
 
   /**
+   * {@inheritdoc}
+   */
+  public function fixLoginLinkDomain(string $loginLink) : string {
+    return $this->getPublicUrl() . preg_replace('/^[a-z]*:\/\/[^\/]*/', '', $loginLink);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicUrl() : string {
+    return $this->publicUrl;
+  }
+
+  /**
    * Constructor.
    *
    * @param string $uuid

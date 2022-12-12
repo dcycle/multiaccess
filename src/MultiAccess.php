@@ -46,6 +46,7 @@ class MultiAccess implements MultiAccessInterface {
       remotePublicKey: $destinationKeyPair->publicKey(),
       localPrivateKey: $sourceKeyPair->privateKey(),
       label: $label,
+      accessibleToRoles: array_keys($role_mapping_array),
     );
 
     return new Integration(
@@ -74,6 +75,16 @@ class MultiAccess implements MultiAccessInterface {
       return $this->getExistingUser($email, $roles);
     }
 
+  }
+
+  /**
+   * Get the current user.
+   *
+   * @return \Drupal\multiaccess\User\MultiAccessUserInterface
+   *   The current user.
+   */
+  public function currentUser() : MultiAccessUserInterface {
+    return new MultiAccessUser($this->currentDrupalUserObject());
   }
 
   /**

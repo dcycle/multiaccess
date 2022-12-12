@@ -1,0 +1,8 @@
+---
+multiaccess_uli_ui.user.remote:
+  path: '/user/{user}/multiaccess'
+  defaults:
+    _form: '\Drupal\multiaccess_uli_ui\Form\RemoteUliForm'
+  requirements:
+    _custom_access: "\\Drupal\\multiaccess_uli_ui\\Controller\\\
+    RemoteUliControllerAccess::access"

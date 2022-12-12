@@ -17,10 +17,11 @@ echo '<?php' > /do-not-commit/test-integration/unversioned-settings.php
   echo "/**";
   echo " * @file";
   echo " * File created for testing purposes.";
-  echo "";
+  echo " *";
   echo " * This was created automatically by the MultiAccess module's";
   echo " * ./scripts/lib/docker-resources/create-test-integration.sh script";
   echo " * during automated testing. It can be safely deleted.";
   echo " */";
+  echo "";
 } >> /do-not-commit/test-integration/unversioned-settings.php
 drush ev "multiaccess_new_integration(label: 'Test Destination Site', public: 'http://webserver_destination', internal: 'http://webserver_destination', role_mapping_array: ['authenticated' => ['authenticated']])" >> /do-not-commit/test-integration/unversioned-settings.php

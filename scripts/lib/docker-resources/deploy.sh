@@ -37,4 +37,4 @@ ls -lah /var/www/html/sites/default
 chmod +w /var/www/html/sites/default/settings.php
 cat /var/www/html/modules/custom/multiaccess/scripts/lib/docker-resources/add-to-settings.txt >> /var/www/html/sites/default/settings.php
 chmod -w /var/www/html/sites/default/settings.php
-drush en -y multiaccess
+drush en -y multiaccess multiaccess_uli_ui

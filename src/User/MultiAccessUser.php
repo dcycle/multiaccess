@@ -24,6 +24,13 @@ class MultiAccessUser implements MultiAccessUserInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function email() : string {
+    return $this->drupalUser->getEmail();
+  }
+
+  /**
    * Make sure the user has these roles and save it.
    *
    * @param array $roles
@@ -53,7 +60,7 @@ class MultiAccessUser implements MultiAccessUserInterface {
    * @param array $roles
    *   Roles this user must have.
    */
-  public function __construct(UserInterface $drupalUser, array $roles) {
+  public function __construct(UserInterface $drupalUser, array $roles = []) {
     $this->drupalUser = $drupalUser;
     $this->addRolesAndSave($roles);
   }

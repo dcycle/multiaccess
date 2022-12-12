@@ -18,6 +18,29 @@ interface IntegrationSourceInterface extends IntegrationHalfInterface, Formattab
   public function getRoleMapping() : RoleMappingInterface;
 
   /**
+   * Fix the login link domain to the public URL.
+   *
+   * In case you're using Docker or a reverse proxy, the domain used by the
+   * backend server to access the destination might be different from the
+   * domain which is publicly-available. Fix it here.
+   *
+   * @param string $loginLink
+   *   A login link with the potentially wrong domain.
+   *
+   * @return string
+   *   The login link with the domain fixed.
+   */
+  public function fixLoginLinkDomain(string $loginLink) : string;
+
+  /**
+   * Get the public URL.
+   *
+   * @return string
+   *   The public URL.
+   */
+  public function getPublicUrl() : string;
+
+  /**
    * Return the integration UUID.
    *
    * @return string
