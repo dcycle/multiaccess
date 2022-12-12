@@ -6,4 +6,3 @@ multiaccess_uli_ui.user.remote:
   requirements:
     _custom_access: "\\Drupal\\multiaccess_uli_ui\\Controller\\\
     RemoteUliControllerAccess::access"
-
