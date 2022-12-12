@@ -21,6 +21,16 @@ interface DependencyInjectionTraitInterface {
   public function emailValidator();
 
   /**
+   * Helper function to set a message.
+   */
+  public function drupalSetMessage(string $message);
+
+  /**
+   * Mockable wrapper for \Drupal::messenger().
+   */
+  public function messenger();
+
+  /**
    * Display a \Throwable as a string.
    *
    * @param \Throwable $t
@@ -47,6 +57,11 @@ interface DependencyInjectionTraitInterface {
    * Mockable wrapper for \Drupal::service('uuid').
    */
   public function uuid();
+
+  /**
+   * Mockable wrapper around \Drupal::currentUser().
+   */
+  public function currentDrupalUserObject();
 
   /**
    * Mockable wrapper around \Drupal::service('multiaccess.response_factory').

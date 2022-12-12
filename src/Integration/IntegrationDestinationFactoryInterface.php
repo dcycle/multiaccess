@@ -26,4 +26,15 @@ interface IntegrationDestinationFactoryInterface extends IntegrationFactoryInter
    */
   public function fromDestinationUuid(string $uuid) : IntegrationDestinationInterface;
 
+  /**
+   * Get all destinations available to one of these roles.
+   *
+   * @param array $roles
+   *   Array of roles.
+   *
+   * @return array
+   *   Array of destinations.
+   */
+  public function destinationsAvailableToRoles(array $roles);
+
 }

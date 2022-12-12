@@ -25,6 +25,27 @@ trait DependencyInjectionTrait {
   /**
    * {@inheritdoc}
    */
+  public function drupalSetMessage(string $message) {
+    $this->messenger()->addMessage($message);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function messenger() {
+    return \Drupal::messenger();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function currentDrupalUserObject() {
+    return \Drupal::currentUser();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function throwableToString(\Throwable $t) {
     return $t->getMessage() . ' ' . $t->getFile() . ':' . $t->getLine();
   }

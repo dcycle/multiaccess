@@ -78,6 +78,16 @@ class MultiAccess implements MultiAccessInterface {
   }
 
   /**
+   * Get the current user.
+   *
+   * @return \Drupal\multiaccess\User\MultiAccessUserInterface
+   *   The current user.
+   */
+  public function currentUser() : MultiAccessUserInterface {
+    return new MultiAccessUser($this->currentDrupalUserObject());
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getUserOneEmail() : string {

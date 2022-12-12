@@ -50,6 +50,23 @@ class IntegrationDestinationFactory extends IntegrationFactory implements Integr
   /**
    * {@inheritdoc}
    */
+  public function destinationsAvailableToRoles(array $roles) {
+    $return = [];
+
+    $destinations = $this->allFromUnversionedSettingsFile();
+
+    foreach ($destinations as $destination) {
+      if ($destination->availableToRolesAmong($roles)) {
+        $return[] = $destination;
+      }
+    }
+
+    return $return;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function fromDestinationUuid(string $uuid) : IntegrationDestinationInterface {
     $candidate = parent::fromUuid($uuid);
 

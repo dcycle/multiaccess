@@ -16,6 +16,14 @@ interface MultiAccessUserInterface {
   public function getLoginLink() : string;
 
   /**
+   * Get the email for this user.
+   *
+   * @return string
+   *   The email for this user.
+   */
+  public function email() : string;
+
+  /**
    * Get a user's roles as an array.
    *
    * @return array
