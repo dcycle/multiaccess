@@ -88,7 +88,7 @@ abstract class IntegrationHalf implements FormattableIntegrationInterface, Integ
     $return .= ' * * Do not use the Drupal config management system for this info.' . PHP_EOL;
     $return .= ' */' . PHP_EOL;
     foreach ($this->settingsFileContents() as $line) {
-      $return .= '$config["multiaccess.unversioned"]["' . $this->localLocation() . '"]["' . $this->getIntegrationUuid() . '"]' . $line . PHP_EOL;
+      $return .= '$config["multiaccess.unversioned"]["' . $this->remoteLocation() . '"]["' . $this->getIntegrationUuid() . '"]' . $line . PHP_EOL;
     }
     $return .= '/**' . PHP_EOL;
     $return .= ' * MultiAccess end ' . $this->localLocation() . ' unversioned config.' . PHP_EOL;

@@ -65,14 +65,14 @@ class IntegrationSource extends IntegrationHalf implements IntegrationSourceInte
    * {@inheritdoc}
    */
   public function remoteLocation() : string {
-    return 'destinations';
+    return 'sources';
   }
 
   /**
    * {@inheritdoc}
    */
   public function localLocation() : string {
-    return 'sources';
+    return 'destinations';
   }
 
   /**
