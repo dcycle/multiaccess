@@ -70,6 +70,7 @@ class MultiAccess implements MultiAccessInterface {
         'mail' => $email,
         'pass' => $this->generatePassword(),
       ]);
+      $newUserEntity->activate();
       $newUserEntity->save();
 
       return $this->getExistingUser($email, $roles);
