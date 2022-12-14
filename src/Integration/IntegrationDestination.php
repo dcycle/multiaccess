@@ -206,14 +206,14 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
    * {@inheritdoc}
    */
   public function remoteLocation() : string {
-    return 'sources';
+    return 'destinations';
   }
 
   /**
    * {@inheritdoc}
    */
   public function localLocation() : string {
-    return 'destinations';
+    return 'sources';
   }
 
 }
