@@ -31,14 +31,6 @@ interface DependencyInjectionTraitInterface {
   public function messenger();
 
   /**
-   * Display a \Throwable as a string.
-   *
-   * @param \Throwable $t
-   *   A \Throwable.
-   */
-  public function throwableToString(\Throwable $t);
-
-  /**
    * Wrapper around \Drupal::httpClient().
    */
   public function httpClient();
@@ -52,6 +44,16 @@ interface DependencyInjectionTraitInterface {
    * Mockable wrapper for \Drupal::service('multiaccess.role_mapping_factory').
    */
   public function roleMappingFactory() : RoleMappingFactoryInterface;
+
+  /**
+   * Mockable wrapper for \Drupal::time().
+   */
+  public function time();
+
+  /**
+   * Mockable wrapper for \Drupal::logger(...).
+   */
+  public function drupalLogger(string $channel);
 
   /**
    * Mockable wrapper for \Drupal::service('uuid').

@@ -44,17 +44,24 @@ trait DependencyInjectionTrait {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function throwableToString(\Throwable $t) {
-    return $t->getMessage() . ' ' . $t->getFile() . ':' . $t->getLine();
-  }
-
-  /**
    * Mockable wrapper for \Drupal::entityQuery($type).
    */
   public function entityQuery(string $type) {
     return \Drupal::entityQuery($type);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function time() {
+    return \Drupal::time();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function drupalLogger(string $channel) {
+    return \Drupal::logger($channel);
   }
 
   /**
