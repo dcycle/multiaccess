@@ -2,14 +2,11 @@
 
 namespace Drupal\multiaccess_uli_ui\Controller;
 
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Routing\TrustedRedirectResponse;
-use Drupal\Core\Url;
 
 /**
  * Allows users to log in to remote sites.

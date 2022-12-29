@@ -97,7 +97,9 @@ class MultiAccess implements MultiAccessInterface {
     // See
     // https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AcurrentUser/8.2.x.
     $account_proxy = $this->currentDrupalUserObject();
-    return new MultiAccessUser(User::load($account_proxy->id()));
+    $uid = $account_proxy->id();
+    $user = $this->entityTypeManager()->getStorage('user')->load($uid);
+    return new MultiAccessUser($user);
   }
 
   /**

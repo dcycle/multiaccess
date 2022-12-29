@@ -64,7 +64,6 @@ trait DependencyInjectionTrait {
     return \Drupal::logger($channel);
   }
 
-
   /**
    * Mockable wrapper for \Drupal::service('multiaccess').
    */

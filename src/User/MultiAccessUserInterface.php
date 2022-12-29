@@ -42,7 +42,7 @@ interface MultiAccessUserInterface {
   /**
    * Get a unique hash for this user for a timestamp.
    *
-   * @return int $timestamp
+   * @param int $timestamp
    *   A timestamp.
    *
    * @return string
