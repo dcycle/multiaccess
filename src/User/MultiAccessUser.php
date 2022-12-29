@@ -26,8 +26,23 @@ class MultiAccessUser implements MultiAccessUserInterface {
   /**
    * {@inheritdoc}
    */
+  public function securityToken(int $timestamp) : string {
+    // We will do what core's user_pass_reset_url() does.
+    return user_pass_rehash($this->drupalUser, $timestamp);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function email() : string {
     return $this->drupalUser->getEmail();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function id() : int {
+    return $this->drupalUser->id();
   }
 
   /**

@@ -9,6 +9,7 @@ use Drupal\multiaccess\Integration\IntegrationDestination;
 use Drupal\multiaccess\RoleMapping\RoleMapping;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\user\Entity\User;
 use Drupal\Component\Utility\Crypt;
@@ -21,6 +22,7 @@ use Drupal\multiaccess\User\MultiAccessUserDoesNotExistException;
  */
 class MultiAccess implements MultiAccessInterface {
 
+  use CommonUtilitiesTrait;
   use StringTranslationTrait;
   use DependencyInjectionTrait;
 
@@ -58,6 +60,16 @@ class MultiAccess implements MultiAccessInterface {
   /**
    * {@inheritdoc}
    */
+  public function destinationsForCurrentUser() {
+    $roles = $this->currentDrupalUserObject()->getRoles();
+
+    return $this->integrationDestinationFactory()
+      ->destinationsAvailableToRoles($roles);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getUser(string $email, array $roles) : MultiAccessUserInterface {
     $this->validateEmail($email);
 
@@ -79,13 +91,13 @@ class MultiAccess implements MultiAccessInterface {
   }
 
   /**
-   * Get the current user.
-   *
-   * @return \Drupal\multiaccess\User\MultiAccessUserInterface
-   *   The current user.
+   * {@inheritdoc}
    */
   public function currentUser() : MultiAccessUserInterface {
-    return new MultiAccessUser($this->currentDrupalUserObject());
+    // See
+    // https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AcurrentUser/8.2.x.
+    $account_proxy = $this->currentDrupalUserObject();
+    return new MultiAccessUser(User::load($account_proxy->id()));
   }
 
   /**

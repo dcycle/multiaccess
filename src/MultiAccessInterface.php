@@ -33,6 +33,22 @@ interface MultiAccessInterface extends DependencyInjectionTraitInterface {
   public function newIntegration(string $label, string $public, string $internal, array $role_mapping_array) : IntegrationInterface;
 
   /**
+   * Get the current user.
+   *
+   * @return \Drupal\multiaccess\User\MultiAccessUserInterface
+   *   The current user.
+   */
+  public function currentUser() : MultiAccessUserInterface;
+
+  /**
+   * Get all destinations available to the current user.
+   *
+   * @return array
+   *   Destinations available to the current user.
+   */
+  public function destinationsForCurrentUser();
+
+  /**
    * Run a self-test on the installations.
    *
    * @param callable $callback
