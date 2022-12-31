@@ -4,6 +4,7 @@ namespace Drupal\multiaccess\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Request;
+use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\multiaccess\Integration\IntegrationSourceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 abstract class MultiAccessControllerBase extends ControllerBase {
 
+  use CommonUtilitiesTrait;
   use DependencyInjectionTrait;
 
   /**
@@ -23,6 +25,7 @@ abstract class MultiAccessControllerBase extends ControllerBase {
       return new JsonResponse($this->getResultData($request));
     }
     catch (\Throwable $t) {
+      $this->logThrowable($t);
       $return = new JsonResponse([
         'error' => $t->getMessage(),
       ]);
