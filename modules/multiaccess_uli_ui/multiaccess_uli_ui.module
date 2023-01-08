@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Runtime hooks.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function multiaccess_uli_ui_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the multiaccess module.
+    case 'help.page.multiaccess_uli_ui':
+      $output = '';
+      $output .= '<h2>' . t('Drupal Multiaccess') . '</h2>';
+      $output .= '<p>';
+      $output .= '<p>' . t('Encrypted communication between Drupal sites, for example to allow users logged into one Drupal site to access other Drupal sites via a one-time login link.') . '</p>';
+      $output .= '<p>' . t('The setup, meant for developers who have access to drush on the command line, is described on the project page on drupal.org.') . '</p>';
+      $output .= '<p>' . t('If this module is properly set up, you can go to /user/UID/multiaccess (where UID is the users user id) and access external sites.') . '</p>';
+      $output .= t('Visit the <a href=":project_link">Multiaccess project page</a> on Drupal.org for more information.', [
+        ':project_link' => 'https://www.drupal.org/project/multiaccess',
+      ]);
+      $output .= '</p>';
+
+      return $output;
+  }
+}
