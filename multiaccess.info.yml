@@ -1,6 +1,8 @@
 ---
 name: Multiaccess
 type: module
-description: Allow communication between Drupal sites, see https://www.drupal.org/project/multiaccess.
+description: >
+  Allow communication between Drupal sites, see
+  https://www.drupal.org/project/multiaccess.
 core_version_requirement: ^9 || ^10
 php: '8.x'
