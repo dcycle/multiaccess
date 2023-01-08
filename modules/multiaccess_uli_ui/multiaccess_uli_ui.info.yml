@@ -1,7 +1,7 @@
 ---
-name: Expose Status Report
+name: Multiaccess ULI UI
 type: module
-description: Expose a Drupal site's status report via JSON.
+description: Allows users on a source site to get one-time unique login links (ULIs) to destination sites. See https://www.drupal.org/project/multiaccess.
 core_version_requirement: ^9 || ^10
 dependencies:
   - multiaccess:multiaccess
