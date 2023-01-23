@@ -7,6 +7,8 @@ multiaccess_uli_ui.user.remote:
   requirements:
     _custom_access: "\\Drupal\\multiaccess_uli_ui\\Controller\\\
     RemoteUliController::access"
+  options:
+    no_cache: 'TRUE'
 multiaccess_uli_ui.redirect:
   path: '/multiaccess/redirect/{uuid}/{timestamp}/{token}'
   defaults:
@@ -14,3 +16,5 @@ multiaccess_uli_ui.redirect:
     RedirectController::result"
   requirements:
     _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'
