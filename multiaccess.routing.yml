@@ -6,9 +6,13 @@ multiaccess.login_link:
     getResult"
   requirements:
     _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'
 multiaccess.ping:
   path: '/api/multiaccess/v1/ping'
   defaults:
     _controller: '\Drupal\multiaccess\Controller\MultiAccessPing::getResult'
   requirements:
     _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'
