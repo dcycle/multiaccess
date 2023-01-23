@@ -29,7 +29,6 @@ abstract class MultiAccessControllerBase extends ControllerBase {
       $return = new JsonResponse([
         'error' => $t->getMessage(),
       ]);
-      $return->setStatusCode(500);
       return $return;
     }
   }
