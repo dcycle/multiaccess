@@ -3,7 +3,7 @@
 Drupal Multiaccess
 =====
 
-Encrypted communication between Drupal sites, for example to allow users logged into one Drupal site to access other Drupal sites' via a one-time login link.
+Encrypted communication between Drupal sites, for example to allow users logged into one Drupal site to access other Drupal sites via a one-time login link.
 
 Similar modules
 -----
