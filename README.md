@@ -113,7 +113,7 @@ The issue [Friendly response to logged-in user landing on user/reset](https://ww
 If your source and destination are on the same URL with different ports
 -----
 
-Because of [this issue](https://www.drupal.org/project/drupal/issues/2933569), if the destination has the same URL or IP with a different port, logging into the destination one the same browser as you are using for the source can log you out of the source. The solution is to use different domains or different browsers.
+Because of [this issue](https://www.drupal.org/project/drupal/issues/2933569), if the destination has the same URL or IP with a different port, logging into the destination on the same browser as you are using for the source can log you out of the source. The solution is to use different domains or different browsers.
 
 Automated testing
 -----
