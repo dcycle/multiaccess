@@ -108,7 +108,9 @@ Use your own UUID, and, instead of user-that-exists-on-source-and-will-be-create
 Loggin in when you are already logged in
 -----
 
-The issue [Friendly response to logged-in user landing on user/reset](https://www.drupal.org/project/drupal/issues/3316655) documents an issue where, if you are already logged in to the destination, you will see an 'Access denied' message.
+The core issue [Friendly response to logged-in user landing on user/reset](https://www.drupal.org/project/drupal/issues/3316655) documents an issue where, if you are already logged in to the destination, you will see an 'Access denied' message.
+
+This can be fixed using the [ULI Custom Workflow](https://www.drupal.org/project/uli_custom_workflow) module, which will no longer show an 'Access denied' message if you are already logged in.
 
 If your source and destination are on the same URL with different ports
 -----
