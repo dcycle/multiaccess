@@ -37,16 +37,11 @@ class RemoteUliController extends ControllerBase {
         '@site' => $destination->getLabel(),
       ]);
 
-      $timestamp = $this->time()->getRequestTime();
-      $token = $this->app()->currentUser()->securityToken($timestamp);
-
       $content['#items'][] = [
         '#type' => 'link',
         '#title' => $title,
         '#url' => Url::fromRoute('multiaccess_uli_ui.redirect', [
           'uuid' => $destination->getIntegrationUuid(),
-          'timestamp' => $timestamp,
-          'token' => $token,
         ]),
         '#attributes' => [
           'target' => '_blank',

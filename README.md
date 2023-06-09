@@ -105,6 +105,31 @@ Once you have the UUID (in this example 28f92726-275f-4ecd-a41d-cffc121616bf) of
 
 Use your own UUID, and, instead of user-that-exists-on-source-and-will-be-created-on-destination@example.com, use a username of an account that exists on the source site.
 
+Access tokens, and difference between branch 1.0.x and 2.x
+-----
+
+In branch 1.x, the included multiacecss_uli_ui module requires links to external sites to be generated using the current time and a security token (this is done in `.modules/multiaccess_uli_ui/src/Controller/RemoteUliController.php`). When such as linked is followed, the system will check if the access token is valid and has been recently generated before allowing one to access a remote site.
+
+In branch 2.x, we have done away with such checks entirely. The following scenario differs in branches 1.0.x and 2.x:
+
+### In branch 1.0.x
+
+* An internal function must be used to generate a link to an external site ABC. The link will look like http://source.example.com/multiaccess/redirect/ABC/TIMESTAMP/TOKEN.
+* When a user visits the link, if the token is invalid, the system will not allow the user to access the destination site.
+* When a user visits the link, if the token is valid _and_ the destination site is properly configured _and_ the user currently logged in to the source site has a role which maps to a role or roles on the destination site, the system will allow the user to access the destination site and log the user in if necessary (although see the "Loggin in when you are already logged in" section below.)
+* This means it requires custom coding to create links to destination sites (example: `.modules/multiaccess_uli_ui/src/Controller/RemoteUliController.php`).
+
+### In branch 2.x
+
+* The link http://source.example.com/multiaccess/redirect/ABC will always be considered valid. No security token is necessary.
+* When a user visits the link, if the destination site is properly configured _and_ the user currently logged in to the source site has a role which maps to a role or roles on the destination site, the system will allow the user to access the destination site and log the user in if necessary (although see the "Loggin in when you are already logged in" section below.)
+
+### The reasoning behind doing away with the token
+
+In branch 1.0.x, we consider that providing a link on the source site leading to an external site (called the destination site) and logging in a user automatically to said destination site is a sensitive operation.
+
+In branch 2.x, we consider that all websites in a group of sites are meant to work together as one, and the difference between sites should be transparent to the end user (that is, if a user is logged in the source site and that that user's role allows them to be logged into a destination site, then logging in to and accessing a path on the destination site should not be considered more sensitive than accessing a path on the source site, for which no token is necessary).
+
 Loggin in when you are already logged in
 -----
 

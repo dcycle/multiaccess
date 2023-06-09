@@ -39,15 +39,4 @@ interface MultiAccessUserInterface {
    */
   public function getRoles() : array;
 
-  /**
-   * Get a unique hash for this user for a timestamp.
-   *
-   * @param int $timestamp
-   *   A timestamp.
-   *
-   * @return string
-   *   A hash.
-   */
-  public function securityToken(int $timestamp) : string;
-
 }
