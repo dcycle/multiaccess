@@ -20,12 +20,8 @@ class RedirectController extends ControllerBase {
   /**
    * Controller to return a result link, if allowed.
    */
-  public function result(string $uuid, string $timestamp, string $token) {
-    if ($this->validToken($timestamp, $token)) {
-      return $this->getUliAndRedirect($uuid);
-    }
-    $this->drupalSetMessage($this->t('This page has become out of date, please try again.'));
-    return $this->redirectToAllResults();
+  public function result(string $uuid) {
+    return $this->getUliAndRedirect($uuid);
   }
 
   /**
@@ -35,25 +31,6 @@ class RedirectController extends ControllerBase {
     return $this->redirect('multiaccess_uli_ui.user.remote', [
       'user' => $this->app()->currentUser()->id(),
     ]);
-  }
-
-  /**
-   * Check if the security token is valid.
-   *
-   * @param string $timestamp
-   *   A timestamp when the token was generated.
-   * @param string $token
-   *   A token.
-   *
-   * @return bool
-   *   TRUE if the token is valid.
-   */
-  public function validToken(string $timestamp, string $token) : bool {
-    $now = $this->time()->getRequestTime();
-    if ($now > intval($timestamp) + 24 * 60 * 60) {
-      return FALSE;
-    }
-    return $token == $this->app()->currentUser()->securityToken(intval($timestamp));
   }
 
   /**
