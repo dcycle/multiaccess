@@ -135,7 +135,7 @@ Specifying a destination (branch 2.x only)
 
 Here is a path on the source site which leads to page /admin/index on the destination site:
 
-* /multiaccess/redirect/DESTINATION_UUID?destinationPath=/admin/index
+* /multiaccess/redirect/DESTINATION_UUID?destination=/admin/index
 
 Loggin in when you are already logged in
 -----

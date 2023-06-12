@@ -22,7 +22,7 @@ class RedirectController extends ControllerBase {
    * Controller to return a result link, if allowed.
    */
   public function result(string $uuid, Request $request) {
-    return $this->getUliAndRedirect($uuid, $request->query->get('destinationPath') ?: '');
+    return $this->getUliAndRedirect($uuid, $request->query->get('destination') ?: '');
   }
 
   /**
