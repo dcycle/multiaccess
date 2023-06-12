@@ -36,11 +36,14 @@ interface IntegrationDestinationInterface extends IntegrationHalfInterface, Form
    *
    * @param string $email
    *   An email.
+   * @param string $destinationPath
+   *   A destination path or an empty string for the default behaviour of
+   *   going to the user profile edit page.
    *
    * @return string
    *   A one-time login link.
    */
-  public function uli(string $email) : string;
+  public function uli(string $email, string $destinationPath) : string;
 
   /**
    * Send a ping to test the integration with the destination.
