@@ -7,6 +7,7 @@ use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Allows users to log in to remote sites.
@@ -20,8 +21,8 @@ class RedirectController extends ControllerBase {
   /**
    * Controller to return a result link, if allowed.
    */
-  public function result(string $uuid) {
-    return $this->getUliAndRedirect($uuid);
+  public function result(string $uuid, Request $request) {
+    return $this->getUliAndRedirect($uuid, $request->query->get('destination') ?: '');
   }
 
   /**
@@ -38,12 +39,14 @@ class RedirectController extends ControllerBase {
    *
    * @param string $uuid
    *   A destination UUID.
+   * @param string $destinationPath
+   *   A destination path on the destination site.
    */
-  public function getUliAndRedirect(string $uuid) {
+  public function getUliAndRedirect(string $uuid, string $destinationPath) {
     try {
       foreach ($this->app()->destinationsForCurrentUser() as $destination) {
         if ($destination->getIntegrationUuid() == $uuid) {
-          $uli = $destination->uli($this->app()->currentUser()->email());
+          $uli = $destination->uli($this->app()->currentUser()->email(), $destinationPath);
           return new TrustedRedirectResponse($uli);
         }
       }

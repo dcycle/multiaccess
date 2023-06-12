@@ -130,6 +130,13 @@ In branch 1.0.x, we consider that providing a link on the source site leading to
 
 In branch 2.x, we consider that all websites in a group of sites are meant to work together as one, and the difference between sites should be transparent to the end user (that is, if a user is logged in the source site and that that user's role allows them to be logged into a destination site, then logging in to and accessing a path on the destination site should not be considered more sensitive than accessing a path on the source site, for which no token is necessary).
 
+Specifying a destination (branch 2.x only)
+-----
+
+Here is a path on the source site which leads to page /admin/index on the destination site:
+
+* /multiaccess/redirect/DESTINATION_UUID?destination=/admin/index
+
 Loggin in when you are already logged in
 -----
 
