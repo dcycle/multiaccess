@@ -133,7 +133,7 @@ class IntegrationDestination extends IntegrationHalf implements IntegrationDesti
   /**
    * {@inheritdoc}
    */
-  public function uli(string $email, string $destinationPath) : string {
+  public function uli(string $email, string $destinationPath = '') : string {
     $existing_user = $this->app()->getExistingUser($email);
 
     $decodedResult = $this->sendMessage('/api/multiaccess/v1/login-link', [

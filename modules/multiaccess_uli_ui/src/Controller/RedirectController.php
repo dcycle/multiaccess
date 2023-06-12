@@ -39,7 +39,7 @@ class RedirectController extends ControllerBase {
    *
    * @param string $uuid
    *   A destination UUID.
-   * @param string $destination
+   * @param string $destinationPath
    *   A destination path on the destination site.
    */
   public function getUliAndRedirect(string $uuid, string $destinationPath) {

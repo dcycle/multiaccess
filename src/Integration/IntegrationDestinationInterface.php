@@ -43,7 +43,7 @@ interface IntegrationDestinationInterface extends IntegrationHalfInterface, Form
    * @return string
    *   A one-time login link.
    */
-  public function uli(string $email, string $destinationPath) : string;
+  public function uli(string $email, string $destinationPath = '') : string;
 
   /**
    * Send a ping to test the integration with the destination.
