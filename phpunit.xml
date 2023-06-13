@@ -4,6 +4,7 @@
   <testsuites>
     <testsuite name="myproject">
       <directory>./tests/src/Unit</directory>
+      <directory>./modules/multiaccess_uli_ui/tests/src/Unit</directory>
     </testsuite>
   </testsuites>
 </phpunit>

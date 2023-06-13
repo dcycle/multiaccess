@@ -15,6 +15,7 @@
 spl_autoload_register(function ($class) {
   $custom_code = [
     'multiaccess' => '.',
+    'multiaccess_uli_ui' => './modules/multiaccess_uli_ui',
   ];
 
   require_once 'phpunit-bootstrap.php';
