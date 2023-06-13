@@ -50,6 +50,52 @@ Typical workflow
 * If a user with some_user@example.com does not exist on Destination, it is created
 * User some_user@example.com on destinations is given role role_some_role as per the mapping.
 
+Instead of seeing Page not found on the destination, how to automatically log in
+-----
+
+When your users land on a page in your destination site, and they are not logged in, by default they will see "Access Denied".
+
+If, instead of that, you want them to be
+
+* directed to the source site (where they have an account)
+* from there, automatically logged in to the destination site
+* and finally be redirected to the page they want to access
+
+Here is what you can do:
+
+### Step one, install and enable [r4032login](https://www.drupal.org/project/r4032login) on the _destination_ site
+
+    composer require drupal/r4032login
+    drush en r4032login
+
+### Step two, make sure you have the source site's public URL
+
+For this example, we will say it is `http://source.example.com`.
+
+### Step three, make sure you know the UUID of the destination site on the source site
+
+For this example, let's say it is DESTINATION_SITE.
+
+### Step four, on the _destination_ site, configure r4032login's user_login_path
+
+    drush cset r4032login.settings user_login_path http://source.example.com/DESTINATION_SITE
+
+### Step five, on the _destination_ site, configure r4032login's destination_parameter_override
+
+    drush cset r4032login.settings destination_parameter_override destination_cannot_be_named_destination
+
+The "destination" parameter cannot be named "destination" because if it is, and it contains a destination on an external site (in this case the destination site is external to the source site), then Drupal will not allow us to accss it, even by directly access the $_GET superglobal.
+
+### Step five, test if you are logged out of the destination and logged in to source
+
+Log in to the source.
+
+Log out of the destination.
+
+On the destination, visit a page accessible only to logged in users, for example /admin/index.
+
+The system should log you in automatically.
+
 Role mapping
 -----
 

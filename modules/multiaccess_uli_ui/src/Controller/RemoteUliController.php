@@ -42,6 +42,15 @@ class RemoteUliController extends ControllerBase {
         '#title' => $title,
         '#url' => Url::fromRoute('multiaccess_uli_ui.redirect', [
           'uuid' => $destination->getIntegrationUuid(),
+        ], [
+          'query' => [
+            // Technically unnecessery because by default Drupal goes to the
+            // user edit page whenever a ULI is used (see for example
+            // https://www.drupal.org/project/uli_custom_workflow/issues/3364831),
+            // however I like the idea of always using the destination
+            // parameter, as our preferred way of generating ULIs.
+            'destination' => '/user/edit',
+          ],
         ]),
         '#attributes' => [
           'target' => '_blank',
