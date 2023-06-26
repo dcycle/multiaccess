@@ -76,15 +76,27 @@ For this example, we will say it is `http://source.example.com`.
 
 For this example, let's say it is DESTINATION_SITE.
 
-### Step four, on the _destination_ site, configure r4032login's user_login_path
+### Step four, on the _destination_ site, set some unversioned settings for r4032login
+
+We need to tell r4032login on the destination what to do when a user does not have access to a page. Instead of going to the destination's login page, we want to go to the source site, and redirect to the destination. Here is how we would do this using the configuration management system (**I don't recommend doing it this way; read on for my recommendation**):
 
     drush cset r4032login.settings user_login_path http://source.example.com/DESTINATION_SITE
+    drush cset r4032login.settings destination_parameter_override destination_cannot_be_named_destination
+
+(The "destination" parameter cannot be named "destination" because if it is, and it contains a destination on an external site (in this case the destination site is external to the source site), then Drupal will not allow us to accss it, even by directly access the $_GET superglobal.)
+
+So if you set the config using `drush cset` on the production, the next time you import configuration from code, it will be overwritten, which we don't want.
+
+If you set the config using `drush cset` on the development site, the destination site gets committed to version control, which we don't want either, because the destination site will probably be different on stage, dev, or prod.
+
+So instead of all this, we can set the configuration using [configuration override in settings.php (or another unversioned file on the target destination environment)](https://www.drupal.org/docs/drupal-apis/configuration-api/configuration-override-system):
+
+    $config['r4032login.settings']['user_login_path'] = 'http://source.example.com/DESTINATION_SITE';
+    $config['r4032login.settings']['destination_parameter_override'] = 'destination_cannot_be_named_destination';
 
 ### Step five, on the _destination_ site, configure r4032login's destination_parameter_override
 
-    drush cset r4032login.settings destination_parameter_override destination_cannot_be_named_destination
 
-The "destination" parameter cannot be named "destination" because if it is, and it contains a destination on an external site (in this case the destination site is external to the source site), then Drupal will not allow us to accss it, even by directly access the $_GET superglobal.
 
 ### Step five, test if you are logged out of the destination and logged in to source
 
