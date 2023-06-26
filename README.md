@@ -80,7 +80,7 @@ For this example, let's say it is DESTINATION_SITE.
 
 We need to tell r4032login on the destination what to do when a user does not have access to a page. Instead of going to the destination's login page, we want to go to the source site, and redirect to the destination. Here is how we would do this using the configuration management system (**I don't recommend doing it this way; read on for my recommendation**):
 
-    drush cset r4032login.settings user_login_path http://source.example.com/DESTINATION_SITE
+    drush cset r4032login.settings user_login_path http://source.example.com/multiaccess/redirect/DESTINATION_SITE
     drush cset r4032login.settings destination_parameter_override destination_cannot_be_named_destination
 
 (The "destination" parameter cannot be named "destination" because if it is, and it contains a destination on an external site (in this case the destination site is external to the source site), then Drupal will not allow us to accss it, even by directly access the $_GET superglobal.)
