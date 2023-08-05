@@ -91,7 +91,7 @@ If you set the config using `drush cset` on the development site, the destinatio
 
 So instead of all this, we can set the configuration using [configuration override in settings.php (or another unversioned file on the target destination environment)](https://www.drupal.org/docs/drupal-apis/configuration-api/configuration-override-system):
 
-    $config['r4032login.settings']['user_login_path'] = 'http://source.example.com/DESTINATION_SITE';
+    $config['r4032login.settings']['user_login_path'] = 'http://source.example.com/multiaccess/redirect/DESTINATION_SITE';
     $config['r4032login.settings']['destination_parameter_override'] = 'destination_cannot_be_named_destination';
 
 ### Step five, on the _destination_ site, configure r4032login's destination_parameter_override
