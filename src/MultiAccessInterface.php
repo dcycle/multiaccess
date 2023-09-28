@@ -3,8 +3,8 @@
 namespace Drupal\multiaccess;
 
 use Drupal\multiaccess\Integration\IntegrationInterface;
-use Drupal\multiaccess\Utilities\DependencyInjectionTraitInterface;
 use Drupal\multiaccess\User\MultiAccessUserInterface;
+use Drupal\multiaccess\Utilities\DependencyInjectionTraitInterface;
 
 /**
  * Interface for the MultiAccess app.

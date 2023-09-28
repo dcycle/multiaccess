@@ -3,11 +3,11 @@
 namespace Drupal\multiaccess\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\Request;
+use Drupal\multiaccess\Integration\IntegrationSourceInterface;
 use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
-use Drupal\multiaccess\Integration\IntegrationSourceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller to get a pong for a ping.

@@ -2,9 +2,9 @@
 
 namespace Drupal\multiaccess\Response;
 
-use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
-use Drupal\multiaccess\Integration\IntegrationSourceInterface;
 use Drupal\Component\Serialization\Json;
+use Drupal\multiaccess\Integration\IntegrationSourceInterface;
+use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 
 /**
  * Response factory.

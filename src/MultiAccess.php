@@ -2,20 +2,20 @@
 
 namespace Drupal\multiaccess;
 
-use Drupal\multiaccess\Integration\IntegrationInterface;
-use Drupal\multiaccess\Integration\Integration;
-use Drupal\multiaccess\Integration\IntegrationSource;
-use Drupal\multiaccess\Integration\IntegrationDestination;
-use Drupal\multiaccess\RoleMapping\RoleMapping;
+use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\multiaccess\Integration\Integration;
+use Drupal\multiaccess\Integration\IntegrationDestination;
+use Drupal\multiaccess\Integration\IntegrationInterface;
+use Drupal\multiaccess\Integration\IntegrationSource;
+use Drupal\multiaccess\RoleMapping\RoleMapping;
+use Drupal\multiaccess\User\MultiAccessUser;
+use Drupal\multiaccess\User\MultiAccessUserDoesNotExistException;
+use Drupal\multiaccess\User\MultiAccessUserInterface;
 use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\user\Entity\User;
-use Drupal\Component\Utility\Crypt;
-use Drupal\multiaccess\User\MultiAccessUserInterface;
-use Drupal\multiaccess\User\MultiAccessUser;
-use Drupal\multiaccess\User\MultiAccessUserDoesNotExistException;
 
 /**
  * The MultiAccess app.

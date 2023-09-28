@@ -2,13 +2,13 @@
 
 namespace Drupal\multiaccess\Utilities;
 
-use Drupal\multiaccess\MultiAccessInterface;
-use Drupal\multiaccess\Integration\IntegrationSourceFactoryInterface;
-use Drupal\multiaccess\Integration\IntegrationDestinationFactoryInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\multiaccess\Integration\IntegrationDestinationFactoryInterface;
+use Drupal\multiaccess\Integration\IntegrationSourceFactoryInterface;
+use Drupal\multiaccess\KeyPair\KeyPairFactoryInterface;
+use Drupal\multiaccess\MultiAccessInterface;
 use Drupal\multiaccess\Response\ResponseFactoryInterface;
 use Drupal\multiaccess\RoleMapping\RoleMappingFactoryInterface;
-use Drupal\multiaccess\KeyPair\KeyPairFactoryInterface;
 
 /**
  * Dependency injection as a trait.
