@@ -1,31 +1,26 @@
 #!/bin/bash
 #
-# Lint PHP code.
+# Fix PHP code.
 #
 set -e
 
-echo '=> Linting PHP code.'
-echo 'If you are getting a false negative, use:'
-echo ''
-echo '// @codingStandardsIgnoreStart'
-echo '...'
-echo '// @codingStandardsIgnoreEnd'
-echo ''
-echo ''
-echo 'To automatically fix errors, you can run:'
-echo ''
-echo './scripts/lint-php-fix.sh'
+echo 'Fixing PHP style errors with https://github.com/dcycle/docker-php-lint'
 echo ''
 
 docker run --rm \
   -v "$(pwd)":/code \
+  --entrypoint=/vendor/bin/phpcbf \
   dcycle/php-lint:3 \
   --extensions=php,module,install,inc \
   --standard=DrupalPractice \
   /code
 docker run --rm \
   -v "$(pwd)":/code \
+  --entrypoint=/vendor/bin/phpcbf \
   dcycle/php-lint:3 \
   --extensions=php,module,install,inc \
   --standard=Drupal \
   /code
+
+echo ' => WE FIXED WHAT WE COULD!'
+echo ''

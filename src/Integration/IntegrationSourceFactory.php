@@ -3,8 +3,8 @@
 namespace Drupal\multiaccess\Integration;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\multiaccess\RoleMapping\RoleMapping;
+use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 
 /**
  * Creator of access info objects.

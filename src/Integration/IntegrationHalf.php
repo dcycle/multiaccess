@@ -2,8 +2,8 @@
 
 namespace Drupal\multiaccess\Integration;
 
-use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
+use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
 
 /**
  * Half of an integration.

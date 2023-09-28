@@ -3,10 +3,10 @@
 namespace Drupal\multiaccess_uli_ui\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Routing\TrustedRedirectResponse;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\multiaccess\Utilities\CommonUtilitiesTrait;
 use Drupal\multiaccess\Utilities\DependencyInjectionTrait;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Routing\TrustedRedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
