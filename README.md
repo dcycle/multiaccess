@@ -50,7 +50,7 @@ Typical workflow
 * If a user with some_user@example.com does not exist on Destination, it is created
 * User some_user@example.com on destinations is given role role_some_role as per the mapping.
 
-Instead of seeing Page not found on the destination, how to automatically log in
+Instead of seeing Access Denied on the destination, how to automatically log in
 -----
 
 When your users land on a page in your destination site, and they are not logged in, by default they will see "Access Denied".
@@ -93,10 +93,6 @@ So instead of all this, we can set the configuration using [configuration overri
 
     $config['r4032login.settings']['user_login_path'] = 'http://source.example.com/multiaccess/redirect/DESTINATION_SITE';
     $config['r4032login.settings']['destination_parameter_override'] = 'destination_cannot_be_named_destination';
-
-### Step five, on the _destination_ site, configure r4032login's destination_parameter_override
-
-
 
 ### Step five, test if you are logged out of the destination and logged in to source
 
