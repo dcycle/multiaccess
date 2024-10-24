@@ -7,15 +7,15 @@ services:
   webserver_source:
     build:
       context: .
-      dockerfile: Dockerfile-nginx-9
+      dockerfile: Dockerfile-nginx-11
 
   drupal_source:
-    image: dcycle/drupal:9php8-fpm-alpine-dev
+    image: dcycle/drupal:11-dev
 
   webserver_destination:
     build:
       context: .
-      dockerfile: Dockerfile-nginx-9-drupal2
+      dockerfile: Dockerfile-nginx-11-drupal2
 
   drupal_destination:
-    image: dcycle/drupal:9php8-fpm-alpine-dev
+    image: dcycle/drupal:11-dev
